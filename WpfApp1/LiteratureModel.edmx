@@ -1,0 +1,949 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище LiteratureAppDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="AuthorId" />
+          </Key>
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="70" />
+          <Property Name="MainGener" Type="int" Nullable="false" />
+          <Property Name="DateOfBirth" Type="int" />
+          <Property Name="DateOfDeath" Type="int" />
+          <Property Name="Language" Type="varchar" MaxLength="80" />
+          <Property Name="Note" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="LiterId" Type="int" Nullable="false" />
+          <Property Name="Pages" Type="int" />
+          <Property Name="ImgPath" Type="varchar" MaxLength="400" />
+          <Property Name="BookPath" Type="varchar" MaxLength="400" />
+          <Property Name="AgeRate" Type="int" />
+        </EntityType>
+        <EntityType Name="BookMark">
+          <Key>
+            <PropertyRef Name="MarkId" />
+          </Key>
+          <Property Name="MarkId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="Mark" Type="decimal" Precision="2" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookState">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ComId" />
+          </Key>
+          <Property Name="ComId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="StartPos" Type="int" />
+          <Property Name="EndPos" Type="int" />
+          <Property Name="Isprivate" Type="bit" />
+          <Property Name="Page" Type="int" />
+        </EntityType>
+        <EntityType Name="Gener">
+          <Key>
+            <PropertyRef Name="GenerId" />
+          </Key>
+          <Property Name="GenerId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="90" Nullable="false" />
+          <Property Name="ParentName" Type="varchar" MaxLength="90" />
+          <Property Name="Description" Type="varchar" MaxLength="400" />
+          <Property Name="Note" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="Literature">
+          <Key>
+            <PropertyRef Name="LitId" />
+          </Key>
+          <Property Name="LitId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="GenerId" Type="int" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="PublisherId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Raiting" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Description" Type="varchar" MaxLength="400" />
+          <Property Name="Note" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="PageMarks">
+          <Key>
+            <PropertyRef Name="PageMarkId" />
+          </Key>
+          <Property Name="PageMarkId" Type="int" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Page" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="PublisherId" />
+          </Key>
+          <Property Name="PublisherId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="90" />
+          <Property Name="Note" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="ReviewCom">
+          <Key>
+            <PropertyRef Name="RewId" />
+          </Key>
+          <Property Name="RewId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pass" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="IsAdmin" Type="int" Nullable="false" />
+          <Property Name="Avatarpath" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <Association Name="FK_Author_Gener">
+          <End Role="Gener" Type="Self.Gener" Multiplicity="1" />
+          <End Role="Author" Type="Self.Author" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gener">
+              <PropertyRef Name="GenerId" />
+            </Principal>
+            <Dependent Role="Author">
+              <PropertyRef Name="MainGener" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Literature">
+          <End Role="Literature" Type="Self.Literature" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Literature">
+              <PropertyRef Name="LitId" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="LiterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookMark_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookMark" Type="Self.BookMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="BookMark">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookMark_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BookMark" Type="Self.BookMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="BookMark">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookState_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookState" Type="Self.BookState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="BookState">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookState_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BookState" Type="Self.BookState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="BookState">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Literature_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="Literature" Type="Self.Literature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Literature">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Literature_Gener">
+          <End Role="Gener" Type="Self.Gener" Multiplicity="1" />
+          <End Role="Literature" Type="Self.Literature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gener">
+              <PropertyRef Name="GenerId" />
+            </Principal>
+            <Dependent Role="Literature">
+              <PropertyRef Name="GenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Literature_Publisher">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Literature" Type="Self.Literature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="PublisherId" />
+            </Principal>
+            <Dependent Role="Literature">
+              <PropertyRef Name="PublisherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageMarks_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="PageMarks" Type="Self.PageMarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="PageMarks">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageMarks_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="PageMarks" Type="Self.PageMarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PageMarks">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReviewCom_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="ReviewCom" Type="Self.ReviewCom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="ReviewCom">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReviewCom_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ReviewCom" Type="Self.ReviewCom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ReviewCom">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище LiteratureAppDBModelContainer">
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookMark" EntityType="Self.BookMark" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookState" EntityType="Self.BookState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gener" EntityType="Self.Gener" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Literature" EntityType="Self.Literature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PageMarks" EntityType="Self.PageMarks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReviewCom" EntityType="Self.ReviewCom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Author_Gener" Association="Self.FK_Author_Gener">
+            <End Role="Gener" EntitySet="Gener" />
+            <End Role="Author" EntitySet="Author" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Literature" Association="Self.FK_Book_Literature">
+            <End Role="Literature" EntitySet="Literature" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookMark_Book" Association="Self.FK_BookMark_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookMark" EntitySet="BookMark" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookMark_Users" Association="Self.FK_BookMark_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookMark" EntitySet="BookMark" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookState_Book" Association="Self.FK_BookState_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookState" EntitySet="BookState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookState_Users" Association="Self.FK_BookState_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookState" EntitySet="BookState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Book" Association="Self.FK_Comment_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Users" Association="Self.FK_Comment_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Literature_Author" Association="Self.FK_Literature_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="Literature" EntitySet="Literature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Literature_Gener" Association="Self.FK_Literature_Gener">
+            <End Role="Gener" EntitySet="Gener" />
+            <End Role="Literature" EntitySet="Literature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Literature_Publisher" Association="Self.FK_Literature_Publisher">
+            <End Role="Publisher" EntitySet="Publisher" />
+            <End Role="Literature" EntitySet="Literature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageMarks_Book" Association="Self.FK_PageMarks_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="PageMarks" EntitySet="PageMarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageMarks_Users" Association="Self.FK_PageMarks_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PageMarks" EntitySet="PageMarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReviewCom_Book" Association="Self.FK_ReviewCom_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="ReviewCom" EntitySet="ReviewCom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReviewCom_Users" Association="Self.FK_ReviewCom_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ReviewCom" EntitySet="ReviewCom" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LiteratureAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="AuthorId" />
+          </Key>
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="MainGener" Type="Int32" Nullable="false" />
+          <Property Name="DateOfBirth" Type="Int32" />
+          <Property Name="DateOfDeath" Type="Int32" />
+          <Property Name="Language" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Gener" Relationship="Self.FK_Author_Gener" FromRole="Author" ToRole="Gener" />
+          <NavigationProperty Name="Literature" Relationship="Self.FK_Literature_Author" FromRole="Author" ToRole="Literature" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="LiterId" Type="Int32" Nullable="false" />
+          <Property Name="Pages" Type="Int32" />
+          <Property Name="ImgPath" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="BookPath" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="AgeRate" Type="Int32" />
+          <NavigationProperty Name="Literature" Relationship="Self.FK_Book_Literature" FromRole="Book" ToRole="Literature" />
+          <NavigationProperty Name="BookMark" Relationship="Self.FK_BookMark_Book" FromRole="Book" ToRole="BookMark" />
+          <NavigationProperty Name="BookState" Relationship="Self.FK_BookState_Book" FromRole="Book" ToRole="BookState" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_Book" FromRole="Book" ToRole="Comment" />
+          <NavigationProperty Name="PageMarks" Relationship="Self.FK_PageMarks_Book" FromRole="Book" ToRole="PageMarks" />
+          <NavigationProperty Name="ReviewCom" Relationship="Self.FK_ReviewCom_Book" FromRole="Book" ToRole="ReviewCom" />
+        </EntityType>
+        <EntityType Name="BookMark">
+          <Key>
+            <PropertyRef Name="MarkId" />
+          </Key>
+          <Property Name="MarkId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="Mark" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_BookMark_Book" FromRole="BookMark" ToRole="Book" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_BookMark_Users" FromRole="BookMark" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="BookState">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_BookState_Book" FromRole="BookState" ToRole="Book" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_BookState_Users" FromRole="BookState" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ComId" />
+          </Key>
+          <Property Name="ComId" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StartPos" Type="Int32" />
+          <Property Name="EndPos" Type="Int32" />
+          <Property Name="Isprivate" Type="Boolean" />
+          <Property Name="Page" Type="Int32" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Comment_Book" FromRole="Comment" ToRole="Book" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Comment_Users" FromRole="Comment" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Gener">
+          <Key>
+            <PropertyRef Name="GenerId" />
+          </Key>
+          <Property Name="GenerId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParentName" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Author" Relationship="Self.FK_Author_Gener" FromRole="Gener" ToRole="Author" />
+          <NavigationProperty Name="Literature" Relationship="Self.FK_Literature_Gener" FromRole="Gener" ToRole="Literature" />
+        </EntityType>
+        <EntityType Name="Literature">
+          <Key>
+            <PropertyRef Name="LitId" />
+          </Key>
+          <Property Name="LitId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GenerId" Type="Int32" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="PublisherId" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Raiting" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Author" Relationship="Self.FK_Literature_Author" FromRole="Literature" ToRole="Author" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Book_Literature" FromRole="Literature" ToRole="Book" />
+          <NavigationProperty Name="Gener" Relationship="Self.FK_Literature_Gener" FromRole="Literature" ToRole="Gener" />
+          <NavigationProperty Name="Publisher" Relationship="Self.FK_Literature_Publisher" FromRole="Literature" ToRole="Publisher" />
+        </EntityType>
+        <EntityType Name="PageMarks">
+          <Key>
+            <PropertyRef Name="PageMarkId" />
+          </Key>
+          <Property Name="PageMarkId" Type="Int32" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Page" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_PageMarks_Book" FromRole="PageMarks" ToRole="Book" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_PageMarks_Users" FromRole="PageMarks" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="PublisherId" />
+          </Key>
+          <Property Name="PublisherId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Literature" Relationship="Self.FK_Literature_Publisher" FromRole="Publisher" ToRole="Literature" />
+        </EntityType>
+        <EntityType Name="ReviewCom">
+          <Key>
+            <PropertyRef Name="RewId" />
+          </Key>
+          <Property Name="RewId" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_ReviewCom_Book" FromRole="ReviewCom" ToRole="Book" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_ReviewCom_Users" FromRole="ReviewCom" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsAdmin" Type="Int32" Nullable="false" />
+          <Property Name="Avatarpath" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BookMark" Relationship="Self.FK_BookMark_Users" FromRole="Users" ToRole="BookMark" />
+          <NavigationProperty Name="BookState" Relationship="Self.FK_BookState_Users" FromRole="Users" ToRole="BookState" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_Users" FromRole="Users" ToRole="Comment" />
+          <NavigationProperty Name="PageMarks" Relationship="Self.FK_PageMarks_Users" FromRole="Users" ToRole="PageMarks" />
+          <NavigationProperty Name="ReviewCom" Relationship="Self.FK_ReviewCom_Users" FromRole="Users" ToRole="ReviewCom" />
+        </EntityType>
+        <Association Name="FK_Author_Gener">
+          <End Role="Gener" Type="Self.Gener" Multiplicity="1" />
+          <End Role="Author" Type="Self.Author" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gener">
+              <PropertyRef Name="GenerId" />
+            </Principal>
+            <Dependent Role="Author">
+              <PropertyRef Name="MainGener" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Literature_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="Literature" Type="Self.Literature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Literature">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Literature">
+          <End Role="Literature" Type="Self.Literature" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Literature">
+              <PropertyRef Name="LitId" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="LiterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookMark_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookMark" Type="Self.BookMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="BookMark">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookState_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookState" Type="Self.BookState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="BookState">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageMarks_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="PageMarks" Type="Self.PageMarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="PageMarks">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReviewCom_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="ReviewCom" Type="Self.ReviewCom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="ReviewCom">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookMark_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BookMark" Type="Self.BookMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="BookMark">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookState_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BookState" Type="Self.BookState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="BookState">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Literature_Gener">
+          <End Role="Gener" Type="Self.Gener" Multiplicity="1" />
+          <End Role="Literature" Type="Self.Literature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gener">
+              <PropertyRef Name="GenerId" />
+            </Principal>
+            <Dependent Role="Literature">
+              <PropertyRef Name="GenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Literature_Publisher">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Literature" Type="Self.Literature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="PublisherId" />
+            </Principal>
+            <Dependent Role="Literature">
+              <PropertyRef Name="PublisherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageMarks_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="PageMarks" Type="Self.PageMarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PageMarks">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReviewCom_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ReviewCom" Type="Self.ReviewCom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ReviewCom">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LiteratureAppDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Author" EntityType="Self.Author" />
+          <EntitySet Name="Book" EntityType="Self.Book" />
+          <EntitySet Name="BookMark" EntityType="Self.BookMark" />
+          <EntitySet Name="BookState" EntityType="Self.BookState" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" />
+          <EntitySet Name="Gener" EntityType="Self.Gener" />
+          <EntitySet Name="Literature" EntityType="Self.Literature" />
+          <EntitySet Name="PageMarks" EntityType="Self.PageMarks" />
+          <EntitySet Name="Publisher" EntityType="Self.Publisher" />
+          <EntitySet Name="ReviewCom" EntityType="Self.ReviewCom" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Author_Gener" Association="Self.FK_Author_Gener">
+            <End Role="Gener" EntitySet="Gener" />
+            <End Role="Author" EntitySet="Author" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Literature_Author" Association="Self.FK_Literature_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="Literature" EntitySet="Literature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Literature" Association="Self.FK_Book_Literature">
+            <End Role="Literature" EntitySet="Literature" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookMark_Book" Association="Self.FK_BookMark_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookMark" EntitySet="BookMark" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookState_Book" Association="Self.FK_BookState_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookState" EntitySet="BookState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Book" Association="Self.FK_Comment_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageMarks_Book" Association="Self.FK_PageMarks_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="PageMarks" EntitySet="PageMarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReviewCom_Book" Association="Self.FK_ReviewCom_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="ReviewCom" EntitySet="ReviewCom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookMark_Users" Association="Self.FK_BookMark_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookMark" EntitySet="BookMark" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookState_Users" Association="Self.FK_BookState_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookState" EntitySet="BookState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Users" Association="Self.FK_Comment_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Literature_Gener" Association="Self.FK_Literature_Gener">
+            <End Role="Gener" EntitySet="Gener" />
+            <End Role="Literature" EntitySet="Literature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Literature_Publisher" Association="Self.FK_Literature_Publisher">
+            <End Role="Publisher" EntitySet="Publisher" />
+            <End Role="Literature" EntitySet="Literature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageMarks_Users" Association="Self.FK_PageMarks_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PageMarks" EntitySet="PageMarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReviewCom_Users" Association="Self.FK_ReviewCom_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ReviewCom" EntitySet="ReviewCom" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LiteratureAppDBModelContainer" CdmEntityContainer="LiteratureAppDBContext">
+          <EntitySetMapping Name="Author">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="MainGener" ColumnName="MainGener" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="DateOfDeath" ColumnName="DateOfDeath" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="LiterId" ColumnName="LiterId" />
+                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="ImgPath" ColumnName="ImgPath" />
+                <ScalarProperty Name="BookPath" ColumnName="BookPath" />
+                <ScalarProperty Name="AgeRate" ColumnName="AgeRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookMark">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.BookMark">
+              <MappingFragment StoreEntitySet="BookMark">
+                <ScalarProperty Name="MarkId" ColumnName="MarkId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookState">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.BookState">
+              <MappingFragment StoreEntitySet="BookState">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="ComId" ColumnName="ComId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="StartPos" ColumnName="StartPos" />
+                <ScalarProperty Name="EndPos" ColumnName="EndPos" />
+                <ScalarProperty Name="Isprivate" ColumnName="Isprivate" />
+                <ScalarProperty Name="Page" ColumnName="Page" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gener">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.Gener">
+              <MappingFragment StoreEntitySet="Gener">
+                <ScalarProperty Name="GenerId" ColumnName="GenerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Literature">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.Literature">
+              <MappingFragment StoreEntitySet="Literature">
+                <ScalarProperty Name="LitId" ColumnName="LitId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GenerId" ColumnName="GenerId" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Raiting" ColumnName="Raiting" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PageMarks">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.PageMarks">
+              <MappingFragment StoreEntitySet="PageMarks">
+                <ScalarProperty Name="PageMarkId" ColumnName="PageMarkId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Page" ColumnName="Page" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publisher">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.Publisher">
+              <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReviewCom">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.ReviewCom">
+              <MappingFragment StoreEntitySet="ReviewCom">
+                <ScalarProperty Name="RewId" ColumnName="RewId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="LiteratureAppDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Avatarpath" ColumnName="Avatarpath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

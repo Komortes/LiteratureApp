@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LiteratureApp.ApplicationPageValueConverter">
+    <Position X="2.5" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueConverters\ApplicationPagevalueConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LiteratureApp.BooleanToVisiblityConverter">
+    <Position X="2.5" Y="6.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueConverters\BooleanToVisibilityConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LiteratureApp.BaseValueConverter&lt;T&gt;">
+    <Position X="5.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAQAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueConverters\BaseValueConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LiteratureApp.Core.IoC">
+    <Position X="3.5" Y="2.5" Width="1.25" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Kernel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="LiteratureApp.Core.ApplicationViewModel">
+    <Position X="0.5" Y="3" Width="2" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="CurrentPage" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="LiteratureApp.Core.BaseViewModel">
+    <Position X="0.5" Y="0.75" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LiteratureApp.ViewModelLocator">
+    <Position X="5.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelLocator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ApplicationViewModel" />
+      <Property Name="Instance" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="Ninject.IKernel" Collapsed="true">
+    <Position X="3.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="LiteratureApp.Core.ApplicationPage">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

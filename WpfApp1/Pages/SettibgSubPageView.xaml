@@ -1,0 +1,99 @@
+﻿<local:BasePage x:Class="LiteratureApp.SettibgSubPageView"
+             x:TypeArguments="local:SettingsSubPageViewModel"  
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:LiteratureApp"
+             mc:Ignorable="d" 
+             x:Name="SetPage"
+      d:DesignHeight="710" d:DesignWidth="600"
+      Title="SettibgSubPageView">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="44"/>
+            <RowDefinition Height="25"/>
+
+            <RowDefinition Height="23"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="20"/>
+
+            <RowDefinition Height="23"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="20"/>
+
+            <RowDefinition Height="23"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="20"/>
+
+            <RowDefinition Height="136"/>
+        </Grid.RowDefinitions>
+        <Rectangle Fill="{Binding Backcolor}" Grid.ColumnSpan="2" Grid.RowSpan="14" RadiusX="25" RadiusY="25" Panel.ZIndex="-1" Margin="0,0,-175,0"/>
+        <Rectangle Fill="{Binding Backcolor}" Panel.ZIndex="0" Grid.RowSpan="14" HorizontalAlignment="Center" Width="26"/>
+        <Canvas Grid.Column="1" Grid.Row ="2">
+            <Label Content="Налаштування" FontFamily="Century Gothic" FontSize="36" Canvas.Top="-4" Foreground="{Binding Elcolor1}" Canvas.Left="50"/>
+            <materialDesign:PackIcon Kind="Cog" Width="45" Height="45" Foreground="{Binding Elcolor1}" />
+        </Canvas>
+        <Canvas Grid.Column="1" Grid.Row ="5" Margin="0,0,-156,10" Grid.RowSpan="2">
+            <GroupBox Width="557" Height="142" Header="Змінити пароль" BorderThickness="0" FontSize="15" FontFamily="Century Gothic"  Style="{DynamicResource MaterialDesignGroupBox}"  materialDesign:ColorZoneAssist.Mode="Custom"
+  materialDesign:ColorZoneAssist.Background="{Binding Elcolor1}" materialDesign:ColorZoneAssist.Foreground="{Binding Elcolor2}" Canvas.Top="-22" >
+                <DockPanel >
+                    <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordBox}" HorizontalAlignment="Left" x:Name="curpas" materialDesign:HintAssist.Hint="Поточний пароль" materialDesign:HintAssist.Foreground="{Binding Elcolor1}" materialDesign:HintAssist.Background="{Binding Backcolor}" Width="210" Height="50" Background="Transparent"  Foreground="{Binding Elcolor1}" Margin="15,0,0,0" BorderBrush="{Binding Elcolor1}"/>
+                    <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordBox}"  HorizontalAlignment="Left" x:Name="newpas"  materialDesign:HintAssist.Hint="Новий пароль" materialDesign:HintAssist.Foreground="{Binding Elcolor1}" materialDesign:HintAssist.Background="{Binding Backcolor}" Width="210" Height="50"  Background="Transparent"  Foreground="{Binding Elcolor1}" Margin="15,0,0,0" BorderBrush="{Binding Elcolor1}" Cursor="IBeam"/>
+                    <Button Height="50" Width="50" HorizontalAlignment="Left" Command="{Binding ChPass}" CommandParameter="{Binding ElementName=SetPage}" materialDesign:ButtonAssist.CornerRadius="12" Margin="25,0,0,0" Background="Transparent" Foreground="{Binding Elcolor1}" Padding="0" BorderThickness="1" BorderBrush="{Binding Elcolor1}" Cursor="Hand">
+                        <materialDesign:PackIcon Kind="Check" Height="30" Foreground="{Binding Elcolor1}" Width="30"/>
+                    </Button>
+                </DockPanel>
+            </GroupBox>
+        </Canvas>
+        <Canvas Grid.Column="1" Grid.Row ="8" Margin="0,0,-156,10" Grid.RowSpan="2">
+            <GroupBox Width="557" Height="142" Header="Змінити пошту" BorderThickness="0" FontSize="15" FontFamily="Century Gothic"  Style="{DynamicResource MaterialDesignGroupBox}"  materialDesign:ColorZoneAssist.Mode="Custom"
+  materialDesign:ColorZoneAssist.Background="{Binding Elcolor1}" materialDesign:ColorZoneAssist.Foreground="{Binding Elcolor2}" Canvas.Top="-22" >
+                <DockPanel >
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding CurMail}" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Поточний email" materialDesign:HintAssist.Foreground="{Binding Elcolor1}" materialDesign:HintAssist.Background="{Binding Backcolor}" Background="Transparent"  Foreground="{Binding Elcolor1}" Width="210" Height="50"  Margin="15,0,0,0" BorderBrush="{Binding Elcolor1}" Cursor="IBeam"/>
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding NewMail}"  HorizontalAlignment="Left"  materialDesign:HintAssist.Hint="Новий email" materialDesign:HintAssist.Foreground="{Binding Elcolor1}" materialDesign:HintAssist.Background="{Binding Backcolor}" Background="Transparent"  Foreground="{Binding Elcolor1}"  Width="210" Height="50"  Margin="15,0,0,0" BorderBrush="{Binding Elcolor1}" Cursor="IBeam"/>
+                   
+                    <Button Height="50" Width="50" materialDesign:ButtonAssist.CornerRadius="12" Command="{Binding ChEmail}" HorizontalAlignment="Left" Margin="25,0,0,0" Background="Transparent" Foreground="{Binding Elcolor1}" Padding="0" BorderThickness="1" BorderBrush="{Binding Elcolor1}">
+                        <materialDesign:PackIcon Kind="Check" Foreground="{Binding Elcolor1}" Height="30" Width="30"/>
+                    </Button>
+                </DockPanel>
+            </GroupBox>
+        </Canvas>
+        <Canvas Grid.Column="1" Grid.Row ="11" Margin="0,0,-156,10" Grid.RowSpan="2">
+            <GroupBox Width="557" Height="142" Header="Змінити ім'я" BorderThickness="0" FontSize="15" FontFamily="Century Gothic"  Style="{DynamicResource MaterialDesignGroupBox}"  materialDesign:ColorZoneAssist.Mode="Custom"
+  materialDesign:ColorZoneAssist.Background="{Binding Elcolor1}" materialDesign:ColorZoneAssist.Foreground="{Binding Elcolor2}" Canvas.Top="-22" >
+                <DockPanel >
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding NewName}" materialDesign:HintAssist.Hint="Нове ім'я" materialDesign:HintAssist.Foreground="{Binding Elcolor1}" materialDesign:HintAssist.Background="{Binding Backcolor}" Width="355" Height="50"  Foreground="{Binding Elcolor1}" Margin="15,0,0,0" BorderBrush="{Binding Elcolor1}" Cursor="IBeam"/>
+                    <Button Height="50" Width="100" HorizontalAlignment="Right" Command="{Binding ChName}" materialDesign:ButtonAssist.CornerRadius="12" Margin="35,0,20,0" Background="Transparent" Foreground="{Binding Elcolor1}" Padding="0" BorderThickness="1" BorderBrush="{Binding Elcolor1}" Cursor="Hand">
+                        <materialDesign:PackIcon Kind="Check" Height="30" Foreground="{Binding Elcolor1}" Width="30"/>
+                    </Button>
+                </DockPanel>
+            </GroupBox>
+        </Canvas>
+        <Canvas Grid.Column="1" Grid.Row ="13" Margin="0,0,-156,10" Grid.RowSpan="2">
+            <ToggleButton
+                Foreground="{Binding Elcolor1}"
+                Background="Transparent"
+                Command="{Binding ChTheme}"
+
+  Style="{StaticResource MaterialDesignActionToggleButton}"
+  Height="50"
+  Width= "50"             
+  ToolTip="MaterialDesignActionLightToggleButton"
+  Content="{materialDesign:PackIcon Kind=Lightbulb}"
+  materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=LightbulbOutline}" Canvas.Left="496" Canvas.Top="66" BorderThickness="1,1,1,1" Cursor="Hand" />
+            <Label Content="Dark Theme:" FontSize="19" FontFamily="Century Gothic" Foreground="{Binding Elcolor1}"  Canvas.Left="360" Canvas.Top="75"/>
+        </Canvas>
+
+
+    </Grid>
+</local:BasePage>

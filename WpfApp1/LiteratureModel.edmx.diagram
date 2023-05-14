@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce4f151db0d14714aac77b848da0baf2" Name="Diagram1">
+        <EntityTypeShape EntityType="LiteratureAppDBModel.Author" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiteratureAppDBModel.Book" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiteratureAppDBModel.BookMark" Width="1.5" PointX="9.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiteratureAppDBModel.BookState" Width="1.5" PointX="9.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiteratureAppDBModel.Comment" Width="1.5" PointX="12.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiteratureAppDBModel.Gener" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiteratureAppDBModel.Literature" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiteratureAppDBModel.PageMarks" Width="1.5" PointX="9.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiteratureAppDBModel.Publisher" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiteratureAppDBModel.ReviewCom" Width="1.5" PointX="12.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiteratureAppDBModel.Users" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_Author_Gener" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_Literature_Author" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_Book_Literature" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_BookMark_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_BookState_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_Comment_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_PageMarks_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_ReviewCom_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_BookMark_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_BookState_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_Comment_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_Literature_Gener" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_Literature_Publisher" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_PageMarks_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LiteratureAppDBModel.FK_ReviewCom_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

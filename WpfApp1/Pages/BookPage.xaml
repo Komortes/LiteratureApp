@@ -1,0 +1,215 @@
+﻿<local:BasePage x:Class="LiteratureApp.BookPage" 
+      x:TypeArguments="local:BookPageViewModel"  
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:LiteratureApp"
+             mc:Ignorable="d" 
+                x:Name="BPage"
+      d:DesignHeight="710" d:DesignWidth="970"
+      Title="BookPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="225"/>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="285"/>
+            <ColumnDefinition Width="217"/>
+            <ColumnDefinition Width="155"/>
+            <ColumnDefinition Width="28"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
+
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="309"/>
+            <RowDefinition Height="29"/>
+            <RowDefinition Height="12"/>
+
+
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.ColumnSpan="7" Grid.RowSpan="13" Fill="{Binding Backcolor}" RadiusX="25" RadiusY="25"/>
+        <Rectangle  Grid.RowSpan="13" Fill="{Binding Backcolor}" />
+        <Rectangle Grid.Column="1" Grid.Row="1" Grid.RowSpan="7" Fill="{Binding BookImg}"  Stroke="Transparent" RadiusX="20" RadiusY="20" Grid.ColumnSpan="1"   />
+        <GroupBox  Header="Відгуки" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="10"  FontSize="15" FontFamily="Century Gothic"  Style="{DynamicResource MaterialDesignGroupBox}"  materialDesign:ColorZoneAssist.Mode="Custom"
+  materialDesign:ColorZoneAssist.Background="Transparent" materialDesign:ColorZoneAssist.Foreground="{Binding Elcolor1}"  >
+            <ScrollViewer Padding="0" Style="{StaticResource ScrollViewerStyle}"  Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Background="Transparent" materialDesign:ScrollBarAssist.ButtonsVisibility="Hidden"  Panel.ZIndex="2" >
+                <StackPanel>
+                    <ItemsControl x:Name="ListViewProducts" ItemsSource="{Binding Coms}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="0,5,10,10" Width="330"  BorderThickness="1" BorderBrush="{Binding colorel}" Height="Auto" Background="Transparent" CornerRadius="15"  >
+                                    <StackPanel>
+                                        <DockPanel Background="{Binding BlockBg}" >
+                                            <Label Content="{Binding UserName}"  Foreground="{Binding colorel}" Margin="10,5,0,5" Width="150" HorizontalAlignment="Left"/>
+                                            <Label Content="{Binding DateS}"   Foreground="{Binding colorel}" Margin="0,5,10,5" Width="100" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                                            <Button Visibility="{Binding CanDel}" Tag="{Binding ComId}" Padding="0" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Cursor="Hand" Click="Button_Click">
+                                                <materialDesign:PackIcon Foreground="{Binding colorel}"  Kind="Delete" Height="25" Width="25" Name="DelComLogo"/>
+                                            </Button>
+                                            <Button Visibility="{Binding CanRep}" Tag="{Binding ComId}" Padding="0" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Cursor="Hand" Click="Button_Click_1" >
+                                                <materialDesign:PackIcon Foreground="{Binding colorel}"  Kind="Report" Height="25" Width="25" Name="RepComLogo"/>
+                                            </Button>
+                                        </DockPanel>
+                                        <TextBlock Margin="4,0,4,10" Padding="5" Text="{Binding Text}" Foreground="{Binding colorel}" FontSize="12" FontFamily="Century Gothic" Height="Auto" TextWrapping="Wrap"  Width="323"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
+        <Label Grid.Column="3" Content="{Binding Name}" Foreground="{Binding Elcolor1}" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" FontSize="26" Height="50" Width="453" FontFamily="Century Gothic" Grid.ColumnSpan="2"/>
+        <Label Grid.Column="3"  Content="{Binding Gener}" Foreground="{Binding Elcolor1}" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="40" Width="285" FontSize="17" FontFamily="Century Gothic"/>
+        <Label Grid.Column="3"  Content="{Binding Author}" Foreground="{Binding Elcolor1}" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="40" Width="285" FontSize="17" FontFamily="Century Gothic"/>
+        <Label Grid.Column="3" Content="{Binding Year}" Foreground="{Binding Elcolor1}" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Height="40" Width="285" FontSize="17" FontFamily="Century Gothic"/>
+        <Label Grid.Column="3" Content="{Binding Publisher}" Foreground="{Binding Elcolor1}" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Height="40" Width="285" FontSize="17" FontFamily="Century Gothic"/>
+        <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}" Name="Status" materialDesign:ComboBoxAssist.ShowSelectedItem="False" 
+                           Background="Transparent" Foreground="{Binding Elcolor1}"
+                           BorderBrush="{Binding Elcolor1}"
+                            Grid.Column="1"
+                            Grid.Row="9"
+                            Padding="5,10,5,0"
+                             materialDesign:HintAssist.HelperText="Додати до списку"
+                             materialDesign:HintAssist.Background="{Binding Backcolor}"
+                             materialDesign:HintAssist.Foreground="{Binding Elcolor1}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="{Binding Elcolor1}"     FontSize="13" FontFamily="Century Gothic" Margin="0,5,50,0" Height="40" VerticalAlignment="Top" SelectionChanged="Status_SelectionChanged" />
+        <Button Padding="0" Width="40" Height="40" Grid.Column="1" IsEnabled="False" Grid.Row="9" HorizontalAlignment="Left" Margin="180,5,0,5" Background="Transparent" BorderBrush="{Binding Elcolor1}" BorderThickness="1" Name="DelState"  Cursor="Hand" Click="DelState_Click">
+            <materialDesign:PackIcon Foreground="{Binding Elcolor1}"  Kind="Delete" Height="25" Width="25" Name="DelLogo"/>
+
+        </Button>
+        <Button Padding="0" Command="{Binding GoToRead}" Width="140" Height="35" Grid.Column="5"  Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Left" Background="Transparent" BorderBrush="{Binding Elcolor1}" BorderThickness="1" Name="StartFB"  Cursor="Hand" FontFamily="Century Gothic">
+            <DockPanel>
+                <materialDesign:PackIcon Foreground="{Binding Elcolor1}" Background="Transparent"   Kind="BookOpen" Height="20" Width="20" Margin="6,0,5,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="Почати читати" Foreground="{Binding Elcolor1}" Background="Transparent"  HorizontalAlignment="Left"/>
+            </DockPanel>
+        </Button>
+        <Button IsEnabled="{Binding HavMark}" Command="{Binding GoToMark}" Padding="0" Width="140" Height="35" Grid.Column="5"  Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Left" Background="Transparent" BorderBrush="{Binding Elcolor1}" BorderThickness="1" Name="StartFM"  Cursor="Hand" FontFamily="Century Gothic" Margin="0,7,0,28">
+            <DockPanel>
+                <materialDesign:PackIcon Foreground="{Binding Elcolor1}" Background="Transparent"   Kind="Bookmark" Height="20" Width="20" Margin="6,0,5,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="Продовжити" Foreground="{Binding Elcolor1}" Background="Transparent"  HorizontalAlignment="Left"/>
+            </DockPanel>
+        </Button>
+        <Button Padding="0" Width="140" Height="35" IsEnabled="{Binding HavPer}"  Grid.Column="5"  Grid.Row="3" HorizontalAlignment="Center" HorizontalContentAlignment="Left" Background="Transparent" BorderBrush="{Binding Elcolor1}" BorderThickness="1" Name="AddRew"  Cursor="Hand" FontFamily="Century Gothic" Margin="0,27,0,17" Grid.RowSpan="2" Click="AddRew_Click">
+            <DockPanel>
+                <materialDesign:PackIcon Foreground="{Binding Elcolor1}" Background="Transparent"  Kind="MessageDraw" Height="20" Width="20" Margin="6,0,5,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="Додати відгук" Foreground="{Binding Elcolor1}" Background="Transparent"  HorizontalAlignment="Right"/>
+            </DockPanel>
+
+        </Button>
+
+        <Button Padding="0" Width="140" Height="35" IsEnabled="{Binding HavPer}"  Grid.Column="5"  Grid.Row="4" HorizontalAlignment="Center" HorizontalContentAlignment="Left" Background="Transparent" BorderBrush="{Binding Elcolor1}" BorderThickness="1" Name="LoadFile"  Cursor="Hand" FontFamily="Century Gothic" Margin="0,35,0,10" Grid.RowSpan="2" Click="LoadFile_Click" >
+            <DockPanel>
+                <materialDesign:PackIcon Foreground="{Binding Elcolor1}" Background="Transparent"  Kind="Download" Height="20" Width="20" Margin="6,0,5,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="Завантажити" Foreground="{Binding Elcolor1}" Background="Transparent"  HorizontalAlignment="Right"/>
+            </DockPanel>
+
+        </Button>
+        <materialDesign:RatingBar Value="{Binding CsRate}" x:Name="BasicRatingBar"  Grid.Column="3" Grid.Row="7" Margin="0,6,161,0" Foreground="#FFEDB538" ValueChanged="BasicRatingBar_ValueChanged_1" />
+        <Button Padding="0" Width="40" Height="40" Command="{Binding GoBack}" Grid.Row="10" HorizontalAlignment="Left" Margin="10,298,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" x:Name="BackToLib"  Cursor="Hand" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <materialDesign:PackIcon Foreground="{Binding Elcolor1}"  Kind="ArrowLeft" Height="25" Width="25" x:Name="BackLogo"/>
+        </Button>
+        <materialDesign:Card Grid.Column="1" HorizontalAlignment="Left" Background="{Binding BlockBg}" Height="190" Grid.Row="10" UniformCornerRadius="15" VerticalAlignment="Top" Width="263"  Grid.ColumnSpan="3" Margin="0,49,0,0"  materialDesign:ShadowAssist.ShadowDepth="Depth3"  >
+            <Grid>
+                <Label Content=" У списках користувачів" Foreground="{Binding Elcolor1}" HorizontalAlignment="Center" VerticalAlignment="Top" Height="27" Width="264" FontSize="14" FontFamily="Century Gothic" />
+
+                <Label Content="Читаю" HorizontalAlignment="Left" Margin="11,35,0,0" VerticalAlignment="Top" FontSize="12" Foreground="{Binding Elcolor1}" Height="24" Width="44"/>
+                <ProgressBar HorizontalAlignment="Left" Name="chbar" Height="10" Margin="79,42,0,0" VerticalAlignment="Top" Width="110" BorderBrush="Transparent" Background="{Binding Barbg}" Value="90"  Foreground="#FF6BAD5E"/>
+                <Label Content="n%" Name="chp"  HorizontalAlignment="Left" Margin="195,35,0,0" VerticalAlignment="Top" FontSize="11" Width="34" Foreground="{Binding Elcolor1}" Height="24"/>
+                <Label Content="n" Name="chn"  HorizontalAlignment="Left" Margin="229,35,0,0" VerticalAlignment="Top" FontSize="11" Width="34" Foreground="{Binding Gtext}" Height="24"/>
+                <Label Content="В планах" HorizontalAlignment="Left" Margin="11,62,0,0" VerticalAlignment="Top" FontSize="12" Foreground="{Binding Elcolor1}" Height="24" Width="56"/>
+                <ProgressBar HorizontalAlignment="Left" Name="plbar"  Height="10" Margin="79,69,0,0" VerticalAlignment="Top" Width="110" BorderBrush="Transparent" Background="{Binding Barbg}" Value="90"  Foreground="#FF6BAD5E"/>
+                <Label Content="n%" Name="plp"  HorizontalAlignment="Left" Margin="195,62,0,0" VerticalAlignment="Top" FontSize="11" Width="34" Foreground="{Binding Elcolor1}" Height="24"/>
+                <Label Content="n" Name="pln" HorizontalAlignment="Left" Margin="229,62,0,0" VerticalAlignment="Top" FontSize="11" Width="34" Foreground="{Binding Gtext}" Height="24"/>
+                <Label Content="Прочитано" HorizontalAlignment="Left" Margin="11,90,0,0" VerticalAlignment="Top" FontSize="12" Foreground="{Binding Elcolor1}" Height="24" Width="70"/>
+                <ProgressBar HorizontalAlignment="Left" Height="10" Name="prbar"  Margin="79,97,0,0" VerticalAlignment="Top" Width="110" BorderBrush="Transparent" Background="{Binding Barbg}" Value="90"  Foreground="#FF6BAD5E"/>
+                <Label Content="n%" Name="prp" HorizontalAlignment="Left" Margin="195,90,0,0" VerticalAlignment="Top" FontSize="11" Width="34" Foreground="{Binding Elcolor1}" Height="24"/>
+                <Label Content="n" Name="prn" HorizontalAlignment="Left" Margin="229,90,0,0" VerticalAlignment="Top" FontSize="11" Width="34" Foreground="{Binding Gtext}" Height="24"/>
+                <Label Content="Кинуто" HorizontalAlignment="Left" Margin="11,119,0,0" VerticalAlignment="Top" FontSize="12" Foreground="{Binding Elcolor1}" Height="24" Width="60"/>
+                <ProgressBar HorizontalAlignment="Left" Name="bbar" Height="10" Margin="79,126,0,0" VerticalAlignment="Top" Width="110" BorderBrush="Transparent" Background="{Binding Barbg}" Value="90"  Foreground="#FF6BAD5E"/>
+                <Label Content="n%" Name="bp" HorizontalAlignment="Left" Margin="195,119,0,0" VerticalAlignment="Top" FontSize="11" Width="34" Foreground="{Binding Elcolor1}" Height="24"/>
+                <Label Content="n" Name="bn" HorizontalAlignment="Left" Margin="229,119,0,0" VerticalAlignment="Top" FontSize="11" Width="34" Foreground="{Binding Gtext}" Height="24"/>
+                <Label Content="Обране" HorizontalAlignment="Left" Margin="11,148,0,0" VerticalAlignment="Top" FontSize="12" Foreground="{Binding Elcolor1}" Height="24" Width="64"/>
+                <ProgressBar HorizontalAlignment="Left" Height="10" Name="ibar" Margin="79,155,0,0" VerticalAlignment="Top" Width="110" BorderBrush="Transparent" Background="{Binding Barbg}" Value="90"  Foreground="#FF6BAD5E"/>
+                <Label Content="n%" Name="ip" HorizontalAlignment="Left" Margin="195,148,0,0" VerticalAlignment="Top" FontSize="11" Width="34" Foreground="{Binding Elcolor1}" Height="24"/>
+                <Label Content="n" Name="inc" HorizontalAlignment="Left" Margin="229,148,0,0" VerticalAlignment="Top" FontSize="11" Width="34" Foreground="{Binding Gtext}" Height="24"/>
+
+            </Grid>
+
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Column="3" HorizontalAlignment="Left"  Background="{Binding BlockBg}" UniformCornerRadius="15" Height="190" Grid.Row="10"  VerticalAlignment="Top" Width="238" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="33,49,0,0"  >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="5.5"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="36.5"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="137"/>
+                    <ColumnDefinition Width="71"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content=" Оцінки користувачів" Foreground="{Binding Elcolor1}" Padding="0,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="28" Width="167" FontSize="14" FontFamily="Century Gothic" RenderTransformOrigin="0.508,0.464" Grid.ColumnSpan="2"/>
+                <DockPanel  Grid.Column="2">
+                    <materialDesign:PackIcon Foreground="#FFEDB538" VerticalAlignment="Bottom" Margin="13,0,0,0" Kind="Star" Height="20" Width="20" x:Name="StarLogo"/>
+                    <Label Name="AvgM" Content="{Binding Rate}" Foreground="{Binding Elcolor1}" VerticalAlignment="Bottom" Margin="0" Padding="0,2,0,0" Height="20" Width="35" FontSize="14"  FontFamily="Century Gothic"/>
+                </DockPanel>
+
+
+                <Label Content="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="{Binding Elcolor1}" Height="32" Width="18" Grid.Row="2"/>
+                <ProgressBar HorizontalAlignment="Center" Name="fbar" Height="10" Grid.Row="2" VerticalAlignment="Center" Width="128" BorderBrush="Transparent" Background="{Binding Barbg}" Value="90"  Foreground="#FF6BAD5E" Grid.Column="1"/>
+                <Label Content="n%" Name="fp" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" FontSize="11" Width="34" Foreground="{Binding Elcolor1}" Height="24" Grid.Column="2"/>
+                <Label Content="n"  Name="fch" HorizontalAlignment="Left" Margin="37,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="11" Width="34" Foreground="{Binding Gtext}" Height="24" Grid.Column="2"/>
+
+                <Label Content="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="{Binding Elcolor1}" Height="32" Width="18" Grid.Row="3"/>
+                <ProgressBar HorizontalAlignment="Center" Name="fobar" Height="10" Grid.Row="3" VerticalAlignment="Center" Width="128" BorderBrush="Transparent" Background="{Binding Barbg}" Value="90"  Foreground="#FFB3DA73" Grid.Column="1"/>
+                <Label Content="n%" Name="fop" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" FontSize="11" Width="34" Foreground="{Binding Elcolor1}" Height="24" Grid.Column="2"/>
+                <Label Content="n" Name="foch" HorizontalAlignment="Left" Margin="37,0,0,0" Grid.Row="3" VerticalAlignment="Center" FontSize="11" Width="34" Foreground="{Binding Gtext}" Height="24" Grid.Column="2"/>
+
+                <Label Content="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="{Binding Elcolor1}" Height="32" Width="18" Grid.Row="4"/>
+                <ProgressBar HorizontalAlignment="Center" Name="trbar" Height="10" Grid.Row="4" VerticalAlignment="Center" Width="128" BorderBrush="Transparent" Background="{Binding Barbg}" Value="90"  Foreground="#FFE2C971" Grid.Column="1"/>
+                <Label Content="n%" Name="trp" HorizontalAlignment="Left" Margin="1,0,0,0" Grid.Row="4" VerticalAlignment="Center" FontSize="11" Width="34" Foreground="{Binding Elcolor1}" Height="24" Grid.Column="2"/>
+                <Label Content="n"  Name="trch" HorizontalAlignment="Left" Margin="37,0,0,0" Grid.Row="4" VerticalAlignment="Center" FontSize="11" Width="34" Foreground="{Binding Gtext}" Height="24" Grid.Column="2"/>
+
+                <Label Content="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="{Binding Elcolor1}" Height="32" Width="18" Grid.Row="5"/>
+                <ProgressBar HorizontalAlignment="Left" Name="tbar" Height="10" Margin="4,0,0,0" Grid.Row="5" VerticalAlignment="Center" Width="128" BorderBrush="Transparent" Background="{Binding Barbg}" Value="90"  Foreground="#FFEDBF7B" Grid.Column="1"/>
+                <Label Content="n%" Name="tp" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Center" FontSize="11" Width="34" Foreground="{Binding Elcolor1}" Height="24" Grid.Column="2"/>
+                <Label Content="n" Name="tch" HorizontalAlignment="Left" Margin="37,0,0,0" Grid.Row="5" VerticalAlignment="Center" FontSize="11" Width="34" Foreground="{Binding Gtext}" Height="24" Grid.Column="2"/>
+
+                <Label Content="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="{Binding Elcolor1}" Height="32" Width="18" Grid.Row="6"/>
+                <ProgressBar HorizontalAlignment="Left" Name="obar" Height="10" Margin="4,0,0,0" Grid.Row="6" VerticalAlignment="Center" Width="128" BorderBrush="Transparent" Background="{Binding Barbg}" Value="90"  Foreground="#FFE47272" Grid.Column="1"/>
+                <Label Content="n%" Name="op" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Center" FontSize="11" Width="34" Foreground="{Binding Elcolor1}" Height="24" Grid.Column="2"/>
+                <Label Content="n" Name="och" HorizontalAlignment="Left" Margin="37,0,0,0" Grid.Row="6" VerticalAlignment="Center" FontSize="11" Width="34" Foreground="{Binding Gtext}" Height="24" Grid.Column="2"/>
+
+            </Grid>
+
+        </materialDesign:Card>
+
+    </Grid>
+</local:BasePage>

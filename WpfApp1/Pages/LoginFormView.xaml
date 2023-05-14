@@ -1,0 +1,115 @@
+﻿<local:BasePage x:TypeArguments=" local:LoginPanelViewModel" x:Class="LiteratureApp.LoginFromView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:LiteratureApp"
+             mc:Ignorable="d" 
+             x:Name="LPage"
+             d:DesignHeight="440" d:DesignWidth="365" Title="LoginPage" >
+
+    <Border Background="{Binding MainBorder}"  x:Name="Enter" BorderBrush="#FFC3C3C3"  BorderThickness="0" CornerRadius="10"   Height="440" Width="365"     >
+
+        <StackPanel Height="440" Width="365">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="19"/>
+                    <ColumnDefinition Width="19*"/>
+                    <ColumnDefinition Width="31*"/>
+                    <ColumnDefinition Width="31*"/>
+                    <ColumnDefinition Width="31*"/>
+                    <ColumnDefinition Width="35*"/>
+                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="19"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="170px"/>
+                    <RowDefinition Height="45px"/>
+                    <RowDefinition Height="13"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="46"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="36"/>
+                </Grid.RowDefinitions>
+                <Canvas  Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="54" Height="46" VerticalAlignment="Center" Grid.Column="3"/>
+                <Canvas Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="54" Height="45" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="User" x:Name="UsecIco" Width="30" Height="30" Foreground="{Binding Elcolor2}" Margin="10" Canvas.Left="2" Canvas.Top="-2"/>
+                </Canvas>
+                <Canvas Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="5" Margin="5,0,7,0">
+                    <TextBox x:Name="login" Tag="Login"  Text="{Binding Login}" Foreground="{Binding Elcolor1}"  Width="265" Height="40" FontSize="14" materialDesign:HintAssist.Hint="Введіть ім'я користувача" materialDesign:HintAssist.Foreground="#FF77A2E3" materialDesign:TextFieldAssist.UnderlineBrush="#FF77A2E3" Style = "{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Century Gothic" CaretBrush="#FF77A2E3" SelectionBrush="#FFABC6ED"  MaxLength="40" Cursor="IBeam" />
+                </Canvas>
+                <Canvas Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Width="54" Height="45" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Password" x:Name="PassIco" Width="30" Height="30" Foreground="{Binding Elcolor2}" Margin="10" Canvas.Left="2" Canvas.Top="-2"/>
+                </Canvas>
+                <Canvas Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5" Margin="5,0,7,0">
+                    <PasswordBox x:Name="password"  Tag="Pass" Width="265" Height="40" Foreground="{Binding Elcolor1}" FontSize="14" materialDesign:HintAssist.Hint="Введіть пароль" materialDesign:HintAssist.Foreground="#FF77A2E3" materialDesign:TextFieldAssist.UnderlineBrush="#FF77A2E3" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontFamily="Century Gothic" CaretBrush="#FF77A2E3" SelectionBrush="#FFABC6ED" Background="#00000000" ScrollViewer.VerticalScrollBarVisibility="Disabled" MaxLength="50" Cursor="IBeam"/>
+                </Canvas>
+                <Canvas Grid.Row="3" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center" Height="0" Width="0"/>
+                <Canvas Grid.Row="8" Grid.Column="7"  Margin="1,0,0,0" />
+                <Canvas Grid.Row="6" Grid.Column="2"  Margin="2,0,59,0" Grid.ColumnSpan="2" />
+                <Button Grid.Column="1" 
+                        Grid.Row="4"  
+                        Command="{Binding ForgetCommand}"
+                        Grid.ColumnSpan="3" 
+                        Background="Transparent" 
+                        BorderBrush="Transparent"
+                        FontFamily="Century Gothic" 
+                        FontStretch="Normal" 
+                        FontStyle="Normal" 
+                        FontWeight="Normal"  
+                        Foreground="{Binding Elcolor2}"
+                        Content="Забули пароль" 
+                        HorizontalAlignment="Left"
+                        Padding="0,0,0,0"
+                        Cursor="Hand"  />
+
+                <Label Grid.Column="1" Grid.Row="5" x:Name="Error1" Grid.ColumnSpan="6" Padding="10,3,0,0" FontFamily="Century Gothic" FontStretch="Normal" FontStyle="Normal" FontWeight="Normal"  Foreground="#FFE42A2A" Content="{Binding ErrorText}" Visibility="{Binding ErrorVis}" Background="Transparent" FontSize="10"></Label>
+                <TextBlock Text="Вхід" Foreground="{Binding Elcolor1}" FontSize="60" FontFamily="Century Gothic" FontWeight="Normal" Name="Vhod" TextAlignment="Center" TextWrapping="NoWrap" Grid.Column="2" Grid.ColumnSpan="4" Margin="24,48,30,49"/>
+                <Button Style="{StaticResource GradientBLight}"  Content="Увійти" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=LPage}"  Grid.Column="2"  Grid.ColumnSpan="4" Margin="40,0,0,0" Grid.Row="6" Width="170" Height="36" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" Cursor="Hand"  >
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <LinearGradientBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                    <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                    <RotateTransform Angle="95" CenterX="0.5" CenterY="0.5"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop x:Name="G1" Color="{Binding G1}" Offset="0.182"/>
+                            <GradientStop x:Name="G2" Color="{Binding G2}" Offset="0.679"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <ToggleButton
+                                Background="Transparent"
+                                Style="{StaticResource MaterialDesignActionToggleButton}"
+                                Content="{materialDesign:PackIcon Kind=LightbulbVariant}"
+                                Command="{Binding ChColor}"
+                                materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=LightbulbVariantOutline}" Name="ChTheme"  Grid.Column="6" Grid.Row="8" HorizontalAlignment="Left" Width="32" Height="32" Foreground="{Binding Elcolor2}" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="16,0,0,0"  Cursor="Hand" IsChecked="{Binding Theme}" />
+                <Button Grid.Column="2" 
+                        Grid.Row="7"  
+                        Command="{Binding RegisterCommand}"
+                        Grid.ColumnSpan="4" 
+                        Background="Transparent" 
+                        BorderBrush="Transparent"
+                        FontFamily="Century Gothic" 
+                        FontStretch="Normal" 
+                        FontStyle="Normal" 
+                        FontWeight="Normal"  
+                        Foreground="{Binding Elcolor2}"
+                        Content="Реєстрація" 
+                        Margin="62,0,70,0" Cursor="Hand" />
+
+
+            </Grid>
+        </StackPanel>
+        <Border.BitmapEffect>
+            <DropShadowBitmapEffect Color="Black" Direction="270" ShadowDepth="0.8" Opacity="1" Softness="0.8" />
+        </Border.BitmapEffect>
+    </Border>
+
+</local:BasePage>

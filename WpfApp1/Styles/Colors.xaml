@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="ButtonLight1">#FF78A3E5</Color>
+    <SolidColorBrush x:Key="ButtonLight1Brush" Color="{StaticResource ButtonLight1}" />
+
+    <Color x:Key="ButtonLight2">#FFB6C7E9</Color>
+    <SolidColorBrush x:Key="ButtonLight2Brush" Color="{StaticResource ButtonLight2}" />
+
+    <Color x:Key="ButtonDark1">#014ab1</Color>
+    <SolidColorBrush x:Key="ButtonDark1Brush" Color="{StaticResource ButtonDark1}" />
+
+    <Color x:Key="ButtonDark2">#1f2c5e</Color>
+    <SolidColorBrush x:Key="ButtonDark2Brush" Color="{StaticResource ButtonDark2}" />
+
+    <Color x:Key="LightPanel">#ffffff</Color>
+    <SolidColorBrush x:Key="LightPanelBrush" Color="{StaticResource LightPanel}" />
+
+    <Color x:Key="DarkPanel">#181929</Color>
+    <SolidColorBrush x:Key="DarkPanelBrush" Color="{StaticResource DarkPanel}" />
+
+    <Color x:Key="GrayColor">#FF515356</Color>
+    <SolidColorBrush x:Key="GrayColorBrush" Color="{StaticResource GrayColor}" />
+
+    <Color x:Key="ErrorCol">#FFE42A2A</Color>
+    <SolidColorBrush x:Key="ErrorColBrush" Color="{StaticResource ErrorCol}" />
+
+
+    <Color x:Key="LightBlueMenu">#91c4eb</Color>
+    <SolidColorBrush x:Key="LightBlueMenuBrush" Color="{StaticResource LightBlueMenu}" />
+
+    <Color x:Key="DarkBlueMenu">#012541</Color>
+    <SolidColorBrush x:Key="DarkBlueMenuBrush" Color="{StaticResource DarkBlueMenu}" />
+
+</ResourceDictionary>

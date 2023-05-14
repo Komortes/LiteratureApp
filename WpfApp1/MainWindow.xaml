@@ -1,0 +1,48 @@
+﻿<Window x:Class="LiteratureApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:LiteratureApp"
+        xmlns:core="clr-namespace:LiteratureApp.Core;assembly=LiteratureApp.Core"
+        x:Name="LogWindow"
+        mc:Ignorable="d"
+        Title="Login" Height="500" Width="800"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Padding="0px" AllowsTransparency="True" Background="Transparent" MouseDown="Window_MouseDown" Icon="/Book.ico">
+    <Border Name="Fon" CornerRadius="{Binding WindowCornerRadius}" >
+        <Border.Background >
+            <ImageBrush ImageSource="Images/light.png"/>
+        </Border.Background>
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="365"/>
+                <ColumnDefinition Width="0"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25px"/>
+                <RowDefinition Height="440px"/>
+                <RowDefinition Height="20px"/>
+
+            </Grid.RowDefinitions>
+            <Canvas Grid.Row="1" Grid.Column="1">
+                <Image Width="320" Height="440" Source="Images/ApplicationFrameHost_4RTrLMSY56-removebg-preview.png"/>
+            </Canvas>
+            <Canvas  Grid.Row="0" Grid.Column="4">
+                <materialDesign:PackIcon Kind="CloseCircle" Name="CloseButt" Foreground="Black" Canvas.Left="8" Canvas.Top="2"  Height="20" Width="20" MouseLeftButtonDown="ClosingApp"  />
+            </Canvas>
+            <Canvas Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" Height="440" Width="365" VerticalAlignment="Center"  Panel.ZIndex="2">
+                <local:PageHost Grid.Column="1" 
+                   d:DataContext=""
+                   DataContext="{Binding ApplicationViewModel.CurrentPage, 
+                                     Source={x:Static local:ViewModelLocator.Instance},  
+                                     Converter={local:ApplicationPageValueConverter}}"
+                   CurrentPage="{Binding}" />
+            </Canvas>
+            
+        </Grid>
+    </Border>
+</Window>
